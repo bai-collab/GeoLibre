@@ -1,0 +1,9 @@
+{
+  "id": "community-history",
+  "name": "Community History Map",
+  "version": "0.1.0",
+  "entry": "dist/index.js",
+  "style": "dist/style.css",
+  "description": "Student-friendly community history workflow for comparing map layers and recording evidence-backed change observations.",
+  "engines": ["maplibre"]
+}
