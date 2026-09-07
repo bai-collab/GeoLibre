@@ -7,6 +7,7 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# Fork preview: keep the feature branch deployable while Community History v1 is being tested.
 permissions:
   contents: read
   pages: write
