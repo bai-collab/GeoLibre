@@ -1,0 +1,223 @@
+{
+  "version": "0.1.0",
+  "name": "嘉義市北社尾歷史地圖審視版",
+  "mapView": {
+    "center": [
+      120.4255,
+      23.4994
+    ],
+    "zoom": 14,
+    "bearing": 0,
+    "pitch": 0
+  },
+  "basemapStyleUrl": "https://tiles.openfreemap.org/styles/positron",
+  "basemapVisible": true,
+  "basemapOpacity": 1,
+  "layers": [
+    {
+      "id": "3f1c3f9f-8d8d-4e1e-193500000001",
+      "name": "1935｜嘉義相關歷史圖",
+      "type": "wmts",
+      "source": {
+        "type": "raster",
+        "tiles": [
+          "https://gis.sinica.edu.tw/chiayi/file-exists.php?img=chiayi_1935-png-{z}-{x}-{y}"
+        ],
+        "tileSize": 256,
+        "url": "https://gis.sinica.edu.tw/chiayi/file-exists.php?img=chiayi_1935-png-{z}-{x}-{y}",
+        "bounds": [
+          120.42797521,
+          23.46489637,
+          120.47440548,
+          23.49807834
+        ],
+        "minzoom": 10,
+        "maxzoom": 19,
+        "attribution": "中央研究院數位文化中心／嘉義百年歷史地圖"
+      },
+      "visible": false,
+      "opacity": 0.85,
+      "style": {},
+      "metadata": {
+        "service": "wmts",
+        "layerId": "chiayi_1935",
+        "period": "1935",
+        "mapType": "歷史圖",
+        "sourcePage": "https://gis.sinica.edu.tw/chiayi/",
+        "observationUse": "作為早期道路、聚落與地塊變化的候選參考",
+        "interpretationLimit": "北社尾是否完整落在圖幅內需另行確認；不可只依圖層名稱推定地物精度"
+      },
+      "groupId": "north-shewei-candidates"
+    },
+    {
+      "id": "3f1c3f9f-8d8d-4e1e-194500000001",
+      "name": "1945｜嘉義舊航照",
+      "type": "wmts",
+      "source": {
+        "type": "raster",
+        "tiles": [
+          "https://gis.sinica.edu.tw/chiayi/file-exists.php?img=Chiayi_aerialphoto_1945-png-{z}-{x}-{y}"
+        ],
+        "tileSize": 256,
+        "url": "https://gis.sinica.edu.tw/chiayi/file-exists.php?img=Chiayi_aerialphoto_1945-png-{z}-{x}-{y}",
+        "bounds": [
+          120.4307805,
+          23.4583517,
+          120.4827784,
+          23.5102283
+        ],
+        "minzoom": 10,
+        "maxzoom": 19,
+        "attribution": "中央研究院數位文化中心／嘉義百年歷史地圖"
+      },
+      "visible": false,
+      "opacity": 0.85,
+      "style": {},
+      "metadata": {
+        "service": "wmts",
+        "layerId": "Chiayi_aerialphoto_1945",
+        "period": "1945",
+        "mapType": "航照影像",
+        "sourcePage": "https://gis.sinica.edu.tw/chiayi/",
+        "observationUse": "觀察農田、水路與聚落的土地利用背景",
+        "interpretationLimit": "航照判讀需要注意影像方向、解析度與地物遮蔽，不直接等同於地籍界線"
+      },
+      "groupId": "north-shewei-candidates"
+    },
+    {
+      "id": "3f1c3f9f-8d8d-4e1e-ns1805000001",
+      "name": "北社尾專用圖｜年代待查",
+      "type": "wmts",
+      "source": {
+        "type": "raster",
+        "tiles": [
+          "https://gis.sinica.edu.tw/chiayi/file-exists.php?img=chaiyi_tj7a1805-png-{z}-{x}-{y}"
+        ],
+        "tileSize": 256,
+        "url": "https://gis.sinica.edu.tw/chiayi/file-exists.php?img=chaiyi_tj7a1805-png-{z}-{x}-{y}",
+        "bounds": [
+          120.4099538,
+          23.48424841,
+          120.44101723,
+          23.51461643
+        ],
+        "minzoom": 10,
+        "maxzoom": 19,
+        "attribution": "中央研究院數位文化中心／嘉義百年歷史地圖"
+      },
+      "visible": false,
+      "opacity": 0.85,
+      "style": {},
+      "metadata": {
+        "service": "wmts",
+        "layerId": "chaiyi_tj7a1805",
+        "period": "年代待查",
+        "mapType": "北社尾專用歷史圖",
+        "sourcePage": "https://gis.sinica.edu.tw/chiayi/",
+        "observationUse": "確認北社尾專用圖的道路、聚落與水路位置",
+        "interpretationLimit": "服務標題目前不足以直接判定製圖年代；未補足年代依據前，不作年代差異結論"
+      },
+      "groupId": "north-shewei-candidates"
+    },
+    {
+      "id": "3f1c3f9f-8d8d-4e1e-9d7a-198300000001",
+      "name": "1983｜嘉義市圖",
+      "type": "wmts",
+      "source": {
+        "type": "raster",
+        "tiles": [
+          "https://gis.sinica.edu.tw/chiayi/file-exists.php?img=Chiayi_15K_1983-png-{z}-{x}-{y}"
+        ],
+        "tileSize": 256,
+        "url": "https://gis.sinica.edu.tw/chiayi/file-exists.php?img=Chiayi_15K_1983-png-{z}-{x}-{y}",
+        "bounds": [120.37117679, 23.41675338, 120.52897382, 23.52894421],
+        "attribution": "中央研究院數位文化中心／嘉義百年歷史地圖"
+      },
+      "visible": true,
+      "opacity": 0.85,
+      "style": {},
+      "metadata": {
+        "service": "wmts",
+        "layerId": "Chiayi_15K_1983",
+        "period": "1983",
+        "mapType": "城市圖",
+        "sourcePage": "https://gis.sinica.edu.tw/chiayi/",
+        "observationUse": "觀察都市道路、聚落範圍與土地利用轉變",
+        "interpretationLimit": "圖面比例尺與製圖目的會影響道路及地物的精細程度"
+      }
+    },
+    {
+      "id": "3f1c3f9f-8d8d-4e1e-9d7a-192100000001",
+      "name": "1921｜日治二萬五千分之一地形圖",
+      "type": "wmts",
+      "source": {
+        "type": "raster",
+        "tiles": [
+          "https://gis.sinica.edu.tw/chiayi/file-exists.php?img=JM25K_1921-png-{z}-{x}-{y}"
+        ],
+        "tileSize": 256,
+        "url": "https://gis.sinica.edu.tw/chiayi/file-exists.php?img=JM25K_1921-png-{z}-{x}-{y}",
+        "bounds": [117.84953432, 21.65607265, 123.85924109, 25.64233621],
+        "attribution": "中央研究院數位文化中心／嘉義百年歷史地圖"
+      },
+      "visible": true,
+      "opacity": 0.85,
+      "style": {},
+      "metadata": {
+        "service": "wmts",
+        "layerId": "JM25K_1921",
+        "period": "1921",
+        "mapType": "地形圖",
+        "sourcePage": "https://gis.sinica.edu.tw/chiayi/",
+        "observationUse": "觀察早期道路、聚落與地形背景",
+        "interpretationLimit": "這是區域地形圖，不等同於今日地籍邊界或完整建築調查"
+      }
+    }
+  ],
+  "styles": {},
+  "plugins": {
+    "activePluginIds": [
+      "maplibre-gl-swipe"
+    ],
+    "mapControlPositions": {
+      "maplibre-gl-swipe": "top-left"
+    },
+    "settings": {
+      "maplibre-gl-swipe": {
+        "orientation": "vertical",
+        "position": 50,
+        "collapsed": false,
+        "active": true,
+        "leftLayers": [
+          "3f1c3f9f-8d8d-4e1e-9d7a-192100000001"
+        ],
+        "rightLayers": [
+          "3f1c3f9f-8d8d-4e1e-9d7a-198300000001"
+        ]
+      }
+    }
+  },
+  "metadata": {
+    "projectId": "north-shewei-geolibre-map",
+    "purpose": "供教師審視嘉義市北社尾不同年代地圖的共同範圍與變化",
+    "primaryComparison": "1921 vs 1983",
+    "modernReference": "OpenFreeMap Positron 向量底圖；作為現代道路與地名參考，不是正射影像",
+    "historicalService": "https://gis.sinica.edu.tw/chiayi/wmts",
+    "sourceCheckedAt": "2026-09-07",
+    "buildStage": "P3 candidate layers added; hidden until per-layer verification",
+    "notes": [
+      "圖層 source 明確加入 bounds，避免向北社尾範圍外請求不存在的 WMTS 圖磚。",
+      "第一版主比較仍先採 1921 與 1983；北社尾專用圖、1945 舊航照與 1935 圖層先以隱藏候選層保存。",
+      "遠端圖資需要瀏覽器與學校網路能連線；本專案不包含大量下載的歷史影像。"
+    ]
+  },
+  "layerGroups": [
+    {
+      "id": "north-shewei-candidates",
+      "name": "候選圖層（教師用）",
+      "collapsed": true,
+      "visible": true,
+      "opacity": 1
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "projectId": "north-shewei-geolibre-map",
+  "checkedAt": "2026-09-07",
+  "primaryEnvironment": {
+    "kind": "GeoLibre Web",
+    "url": "https://web.geolibre.app/",
+    "sourceRepository": "https://github.com/bai-collab/GeoLibre",
+    "sourceCommit": "73bcb8472109e61670cd09f408a608dd14b75723",
+    "packageVersion": "2.9.0",
+    "node": "v22.22.3",
+    "npm": "10.9.8"
+  },
+  "layers": [
+    {
+      "status": "通過",
+      "layerId": "JM25K_1921",
+      "title": "1921-日治二萬五千分之一地形圖",
+      "period": "1921",
+      "service": "WMTS tile template",
+      "coverage": [117.84953432, 21.65607265, 123.85924109, 25.64233621],
+      "tileProbe": "200 image/png at z14/x13672/y7091",
+      "use": "第一版歷史比較層"
+    },
+    {
+      "status": "通過",
+      "layerId": "Chiayi_15K_1983",
+      "title": "嘉義市圖(1983)",
+      "period": "1983",
+      "service": "WMTS tile template",
+      "coverage": [120.37117679, 23.41675338, 120.52897382, 23.52894421],
+      "tileProbe": "200 image/png at z14/x13672/y7091",
+      "use": "第一版歷史比較層"
+    },
+    {
+      "status": "未測",
+      "layerId": "chaiyi_tj7a1805",
+      "title": "嘉義市(街)北社尾圖",
+      "period": "年代待依原典補證",
+      "service": "WMTS tile template",
+      "coverage": [120.4099538, 23.48424841, 120.44101723, 23.51461643],
+      "tileProbe": "200 image/png at z14/x13672/y7091; bounds/minzoom/maxzoom 已加入 project source",
+      "runtimeNote": "曾以無 bounds 的 UI 設定實際顯示，但產生範圍外解碼診斷；加入 bounds 後尚未重新切換驗證",
+      "use": "北社尾精確範圍定位層；後續補年代與來源說明"
+    },
+    {
+      "status": "未測",
+      "layerId": "Chiayi_aerialphoto_1945",
+      "title": "嘉義市舊航照影像(1945)",
+      "period": "1945",
+      "service": "WMTS tile template",
+      "coverage": [120.4307805, 23.4583517, 120.4827784, 23.5102283],
+      "tileProbe": "200 image/png at z14/x13673/y7091",
+      "use": "後續候選；覆蓋範圍需與北社尾共同範圍再檢查"
+    },
+    {
+      "status": "未測",
+      "layerId": "chiayi_1935",
+      "title": "嘉義相關歷史圖(1935)",
+      "period": "1935",
+      "service": "WMTS tile template",
+      "coverage": [120.42797521, 23.46489637, 120.47440548, 23.49807834],
+      "tileProbe": "200 image/png at z14/x13673/y7092",
+      "use": "後續候選；北社尾共同範圍與圖種仍需實際判讀"
+    },
+    {
+      "status": "通過",
+      "layerId": "openfreemap-positron",
+      "title": "現代向量底圖",
+      "period": "現代參考",
+      "service": "MapLibre style URL",
+      "url": "https://tiles.openfreemap.org/styles/positron",
+      "use": "現代道路、地名與聚落背景；不代替正射影像"
+    }
+  ],
+  "fallbackPolicy": [
+    "同一來源且相同觀察目的的替代圖層",
+    "同一來源的鄰近年代圖層",
+    "授權條件清楚的其他來源",
+    "保留資料缺口並交付已通過圖層"
+  ]
+}
