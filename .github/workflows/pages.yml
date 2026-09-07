@@ -2,11 +2,12 @@ name: Deploy Website
 
 on:
   push:
-    branches: [main]
+    branches: [main, feature/community-history-v1]
   pull_request:
     branches: [main]
   workflow_dispatch:
 
+# Fork preview: keep the feature branch deployable while Community History v1 is being tested.
 permissions:
   contents: read
   pages: write
