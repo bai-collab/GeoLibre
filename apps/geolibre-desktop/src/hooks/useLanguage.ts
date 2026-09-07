@@ -11,7 +11,7 @@ import {
 import { useDesktopSettingsStore } from "./useDesktopSettings";
 
 export interface UseLanguageResult {
-  /** The active UI language code (e.g. `"en"`). */
+  /** The active UI language code (e.g. `"en"`, `"zh-TW"`). */
   language: string;
   /** Selectable languages, default first then alphabetical. */
   options: LanguageOption[];

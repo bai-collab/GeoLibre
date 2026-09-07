@@ -36,24 +36,30 @@ describe("resolveLanguage", () => {
 
 describe("languageOptions", () => {
   it("sorts the default language first, then alphabetically by English name", () => {
-    // en is pinned first; the rest sort by English name: Chinese < Portuguese.
-    const options = languageOptions(["pt", "zh", "en"]);
+    // zh-TW is pinned first; the rest sort by English name.
+    const options = languageOptions(["pt", "zh", "en", "zh-TW"]);
     assert.deepEqual(
       options.map((option) => option.code),
-      ["en", "zh", "pt"],
+      ["zh-TW", "en", "pt", "zh"],
     );
     assert.equal(options[0].code, DEFAULT_LANGUAGE);
   });
 
   it("provides friendly names and falls back to the raw code", () => {
-    const [, , unknown] = languageOptions(["en", "zh", "xx"]);
+    const options = languageOptions(["en", "zh", "zh-TW", "xx"]);
+    const unknown = options.find((option) => option.code === "xx");
+    assert.ok(unknown);
     assert.equal(unknown.code, "xx");
     assert.equal(unknown.nativeName, "xx");
     assert.equal(unknown.englishName, "xx");
 
     const zh = languageOptions(["zh"])[0];
-    assert.equal(zh.nativeName, "中文");
-    assert.equal(zh.englishName, "Chinese");
+    assert.equal(zh.nativeName, "简体中文");
+    assert.equal(zh.englishName, "Simplified Chinese");
+
+    const zhTw = languageOptions(["zh-TW"])[0];
+    assert.equal(zhTw.nativeName, "繁體中文");
+    assert.equal(zhTw.englishName, "Traditional Chinese");
   });
 });
 

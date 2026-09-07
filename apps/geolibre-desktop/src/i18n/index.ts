@@ -18,11 +18,13 @@ import {
 import { DEFAULT_LANGUAGE, languageDirection, resolveLanguage } from "./languages";
 import enTranslation from "./locales/en.json";
 
+const ENGLISH_LANGUAGE = "en";
+
 /**
  * English is the fallback baseline (and the source of truth `i18next.d.ts` types
  * `t()` against), so it is bundled statically — always present and synchronous.
  * Every *other* locale is a separate lazily-imported chunk, fetched only when it
- * becomes the active language: fully translated, the 15 non-English catalogs run
+ * becomes the active language: fully translated, the non-English catalogs run
  * to several MB and must not ship in the boot graph. The service worker keeps
  * these chunks out of the app-shell precache and CacheFirst-caches each on first
  * use (see `vite.config.ts`); `docs/i18n.md` has the details.
@@ -40,15 +42,15 @@ for (const [path, loader] of Object.entries(localeLoaders)) {
 }
 
 /** Catalog codes we ship: English plus every lazily-loadable locale. */
-export const AVAILABLE_LANGUAGES: string[] = [DEFAULT_LANGUAGE, ...Object.keys(loaders)].sort();
+export const AVAILABLE_LANGUAGES: string[] = [ENGLISH_LANGUAGE, ...Object.keys(loaders)].sort();
 
 /** English is registered up front; other locales are added on demand. */
 const resources: Record<string, { translation: Record<string, unknown> }> = {
-  [DEFAULT_LANGUAGE]: { translation: enTranslation as Record<string, unknown> },
+  [ENGLISH_LANGUAGE]: { translation: enTranslation as Record<string, unknown> },
 };
 
 /** Base catalogs already registered independently of an optional language pack. */
-const loadedBaseCatalogs = new Set<string>([DEFAULT_LANGUAGE]);
+const loadedBaseCatalogs = new Set<string>([ENGLISH_LANGUAGE]);
 
 async function loadBaseCatalog(code: string): Promise<void> {
   if (loadedBaseCatalogs.has(code)) return;
@@ -181,15 +183,15 @@ export async function removeLanguagePack(locale: string): Promise<void> {
 
   i18n.removeResourceBundle(supported, "translation");
   loadedBaseCatalogs.delete(supported);
-  if (supported === DEFAULT_LANGUAGE) {
+  if (supported === ENGLISH_LANGUAGE) {
     i18n.addResourceBundle(
-      DEFAULT_LANGUAGE,
+      ENGLISH_LANGUAGE,
       "translation",
       enTranslation as Record<string, unknown>,
       true,
       true,
     );
-    loadedBaseCatalogs.add(DEFAULT_LANGUAGE);
+    loadedBaseCatalogs.add(ENGLISH_LANGUAGE);
   } else {
     await loadBaseCatalog(supported);
   }
@@ -278,8 +280,13 @@ function persistedLanguage(): string | null {
  * Resolve the initial UI language, in priority order:
  *   1. `?locale=` / `?lang=` query param (for embeds, consistent with `theme`)
  *   2. the language persisted in desktop settings
- *   3. the browser's preferred languages (`navigator.languages`)
- *   4. the default (`en`)
+ *   3. this build's default language
+ *
+ * The browser language is intentionally not used here: the classroom build
+ * must open consistently in Taiwan Traditional Chinese, even when a school
+ * browser is configured for English or Mainland Chinese. Users can still
+ * change the language from Settings, and an embed can override it with the
+ * query parameter above.
  * Only languages we ship a catalog for are honored; anything else falls through.
  * Resolution is synchronous — it inspects the catalog *codes*, never their
  * (possibly not-yet-loaded) contents.
@@ -295,12 +302,6 @@ export function getInitialLanguage(): string {
     const fromSettings = resolveLanguage(persistedLanguage(), AVAILABLE_LANGUAGES);
     if (fromSettings) return fromSettings;
 
-    const navigatorLanguages =
-      typeof navigator !== "undefined" ? (navigator.languages ?? [navigator.language]) : [];
-    for (const candidate of navigatorLanguages) {
-      const fromNavigator = resolveLanguage(candidate, AVAILABLE_LANGUAGES);
-      if (fromNavigator) return fromNavigator;
-    }
   }
 
   return DEFAULT_LANGUAGE;
@@ -329,10 +330,11 @@ const initialLanguage = getInitialLanguage();
  * while a lazy catalog loads.
  */
 export const i18nReady: Promise<unknown> = (async () => {
-  // English is already bundled; preload only a non-default initial locale so its
-  // strings are present on the very first paint.
+  // English is already bundled; preload any non-English initial locale so its
+  // strings are present on the very first paint. The classroom default
+  // zh-TW catalog is intentionally a lazy-loaded chunk too.
   let effectiveLanguage = initialLanguage;
-  if (initialLanguage !== DEFAULT_LANGUAGE && loaders[initialLanguage]) {
+  if (initialLanguage !== ENGLISH_LANGUAGE && loaders[initialLanguage]) {
     try {
       const mod = await loaders[initialLanguage]();
       resources[initialLanguage] = { translation: mod.default };
@@ -343,7 +345,7 @@ export const i18nReady: Promise<unknown> = (async () => {
       // English fallback text while still applying the locale's `lang`/`dir`
       // (wrong RTL direction for e.g. Arabic). The user can switch once online.
       console.error("[GeoLibre] Failed to load initial locale catalog; using English", error);
-      effectiveLanguage = DEFAULT_LANGUAGE;
+      effectiveLanguage = ENGLISH_LANGUAGE;
     }
   }
 
@@ -354,7 +356,7 @@ export const i18nReady: Promise<unknown> = (async () => {
   await i18n.use(initReactI18next).init({
     resources,
     lng: effectiveLanguage,
-    fallbackLng: DEFAULT_LANGUAGE,
+    fallbackLng: ENGLISH_LANGUAGE,
     defaultNS: "translation",
     interpolation: {
       // React already escapes rendered values, so i18next double-escaping would

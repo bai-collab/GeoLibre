@@ -29,7 +29,7 @@ export const UPDATE_NOTIFICATION_LEVELS: readonly UpdateNotificationLevel[] = [
 export interface DesktopSettings {
   additionalPluginDirectories: string[];
   /**
-   * Persisted UI language code (e.g. `"en"`, `"zh"`). Empty string means "follow
+   * Persisted UI language code (e.g. `"en"`, `"zh-TW"`). Empty string means "follow
    * automatic detection" (browser/default). The i18n layer reads this directly
    * from localStorage on startup; a `?locale`/`?lang` query param overrides it
    * for embeds. See `src/i18n/index.ts`.

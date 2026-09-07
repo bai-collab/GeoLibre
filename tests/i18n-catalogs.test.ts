@@ -89,7 +89,7 @@ describe("i18n catalogs", () => {
     }
   });
 
-  it("covers the Processing vector toolbar keys in English and Chinese", () => {
+  it("covers the Processing vector toolbar keys in English and Chinese catalogs", () => {
     const keys = [
       "decodePolyline",
       "encodePolyline",
@@ -98,7 +98,7 @@ describe("i18n catalogs", () => {
       "aggregate",
       "smooth",
     ];
-    for (const code of ["en", "zh"]) {
+    for (const code of ["en", "zh", "zh-TW"]) {
       const toolbar = loadCatalog(code).toolbar as {
         vectorTool: Record<string, unknown>;
       };

@@ -7,7 +7,7 @@
  * selector shows a friendly label. See `docs/i18n.md`.
  */
 
-export const DEFAULT_LANGUAGE = "en";
+export const DEFAULT_LANGUAGE = "zh-TW";
 
 /**
  * Friendly names for known language codes. The selector falls back to the raw
@@ -16,7 +16,8 @@ export const DEFAULT_LANGUAGE = "en";
  */
 export const LANGUAGE_NAMES: Record<string, { nativeName: string; englishName: string }> = {
   en: { nativeName: "English", englishName: "English" },
-  zh: { nativeName: "中文", englishName: "Chinese" },
+  zh: { nativeName: "简体中文", englishName: "Simplified Chinese" },
+  "zh-TW": { nativeName: "繁體中文", englishName: "Traditional Chinese" },
   es: { nativeName: "Español", englishName: "Spanish" },
   fa: { nativeName: "فارسی", englishName: "Persian" },
   fr: { nativeName: "Français", englishName: "French" },
